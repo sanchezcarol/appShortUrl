@@ -1,0 +1,43 @@
+<div *ngIf="error" class="alert alert-danger alert-dismissible text-center">
+    <strong> {{textError}} </strong>
+</div>
+
+<div class="container mt-5">
+    <h1 class="text-center">Short URL</h1>
+
+    <div class="card mt-5 shadow p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <h2 class="mt-3 mb-5 text-center">Paste the URL to be shortened </h2>
+            <div class="row mt-5 mb-5">
+                <div class="col-lg-10">
+                    <input type="text" [(ngModel)]="nombreUrl" class="form-control form-control-lg "
+                        placeholder="Enter link here">
+                </div>
+                <div class="col-lg-2">
+                    <button (click)="shortURL()" class="btn btn-outline-secondary btn-block btn-lg">Shorten url</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow p-3 mb-5 bg-white rounded" *ngIf="urlProcesada">
+
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h3 class="mt-3">Your shortened URL</h3>
+                <div class="input-group mb-4 mt-4">
+                    <input type="text" #input  class="form-control" [(ngModel)]="urlShort" placeholder="Your shortened URL" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button (click)="copyLink(input)" class="btn btn-outline-secondary" type="button">Copy Link</button>
+                    </div>
+                </div>
+                <span > Long URL : <a target="_blank" href="{{nombreUrl}}">{{nombreUrl}}</a></span>
+            </div>
+        </div>
+
+
+    </div>
+
+    <app-spinner *ngIf="loading"></app-spinner>
+
+</div>
